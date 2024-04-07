@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Compositional Physical Reasoning of Objects and Events from Videos">
+  <meta name="keywords" content="Physical Reasoning, Neuro-Symbolic Models, Hybrid Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compositional Physical Reasoning of Objects and Events from Videos</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/prism.css" />
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script defer src="./static/js/prism.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <div id="content0">
+            <br/>
+            <br/>
+            <br/>
+            <!-- <h1 class="title is-1 publication-title">ContPhy: </h1><h1 class="title is-2 has-text-centered">Continuum Physical Concept Learning and Reasoning from Videos</h1> -->
+            <h1 class="title is-1 publication-title">Compositional Physical Reasoning of Objects and Events from Videos</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Anonymous authors
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav id="navbar">
+  <a href="#content1">Abstract</a>
+  <a href="#content2">Dataset</a>
+  <a href="#content3"><strong><span style="color: rgb(106, 220, 255);">PCR</span></strong></a>
+  <a href="#content4">Example</a>
+  <a href="#content5">Experiments</a>
+  <!-- <a href="#content10"><strong><span style="color: rgb(255, 106, 131);">ContPRO</span></strong></a> -->
+</nav>
+
+
+
+
+
+
+<!-- Abstract. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths"> -->
+        <div id="content1">
+          <br/>
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
+
+          <div class="content has-text-justified">
+            <!-- <p class="content has-text-centered"> <span style="font-size: 24px;color: black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              We introduce the <strong>Cont</strong>inuum <strong>Phy</strong>sical Dataset <strong>(ContPhy)</strong>, a novel benchmark for
+              evaluating machine models in physical reasoning across diverse scenarios for
+                the continuum.
+              </span>
+            </p> -->
+            <p><span style="font-size: 20px;color: rgb(58, 58, 58);font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              Understanding and reasoning about objects' physical properties in the natural world is a fundamental challenge in artificial
+              intelligence. While some properties like colors and shapes can be directly observed, others, such as mass and electric charge, are
+              hidden from the objects' visual appearance. This paper addresses the unique challenge of inferring these hidden physical properties
+              from objects' motion and interactions and predicting corresponding dynamics based on the inferred physical properties. We first introduce
+              the Compositional Physical Reasoning (ComPhy) dataset. For a given set of objects, ComPhy includes limited videos of them moving
+              and interacting under different initial conditions. The model is evaluated based on its capability to unravel the compositional hidden
+              properties, such as mass and charge, and use this knowledge to answer a set of questions. Besides the synthetic videos from simulators,
+              we also collect a real-world dataset to show further test physical reasoning abilities of different models. We evaluate state-of-the-art video
+              reasoning models on ComPhy and reveal their limited ability to capture these hidden properties, which leads to inferior performance.
+              We also propose a novel neuro-symbolic framework, Physical Concept Reasoner (PCR), that learns and reasons about both visible
+              and hidden physical properties. Leveraging an object-centric representation, PCR utilizes videos and the associated natural language
+              to infer objects' physical properties without dense object annotations. It incorporates property-aware graph networks to approximate the
+              dynamic interactions among objects. Furthermore, PCR employs a semantic parser to convert questions into semantic programs, and
+              a program executor to execute the programs based on the learned physical properties and dynamics. After training, PCR demonstrates
+              remarkable capabilities. It can detect and associate objects across frames, ground visible and hidden physical properties, make future
+              and counterfactual predictions, and utilize these extracted representations to answer questions. We hope the proposed ComPhy dataset
+              and the PCR model present a promising step towards more comprehensive physical reasoning in AI systems.
+            </span>
+            </p>
+          </div>
+        </div>
+        <br/>
+
+        <!-- <div class="columns is-centered has-text-centered">
+          <div class="column is-10">
+            <video id="video3" autoplay muted loop playsinline height="100%", class="showcase-qa">
+              <source src="static/videos/teasers/dialogue.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div id="content6">
+          <br/>
+          <br/>
+          <br/>
+          <h2 class="title is-3 has-text-centered">Motivation</h2>
+          <p class="content has-text-centered"> <span style="font-size: 24px;color: black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            The motivation is derived from a range of everyday soft materials and their interaction with rigid objects, whose physical behaviors
+          or functions vary because of their diverse physical properties.
+          <br>
+          </span></p> -->
+          <!-- <div class="columns is-vcentered is-centered">
+            
+            <div class="column is-10 has-text-centered">
+              <img src="static/images/teaser.jpg" alt="teaser" class="showcase-qa">
+            </div>
+          </div>
+          <h2 class="content has-text-justified">
+            <span style="font-size: 20px;color: black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              The motivation is derived from a range of everyday soft materials and their interaction with rigid objects,
+              whose physical behaviors or functions vary because of their diverse physical properties. a) Gasoline 
+              flows more fluently than glue due to lower viscosity, while oil with lower density tends to float 
+              above water. b) Poplin and canvas exhibit surface wrinkles with varying granularity due to their 
+              distinct bending compliance. c) The lifting approach requires less force due to the re-distributed
+              tensile forces facilitated by the movable pulley. d) Trajectories of tennis ball and dough ball 
+              demonstrate their differing elasticity and plasticity.
+            </span>
+          </h2>
+        </div> -->
+      <!-- </div>
+    </div> -->
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<!-- Dataset. -->
+<section id="content2" class="section">
+  <div  class="content-section">
+    <!-- <div  id="content2" > -->
+      <h2 class="title is-2 has-text-centered">Dataset</h2>
+
+      <!-- comphy  -->
+      <div id="content6" class="container is-widescreen has-text-centered">
+      
+      <!-- comphy  -->
+        <br/>
+
+        <!-- title -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">ComPhy</h2>
+          </div>
+        </div>
+
+        <div class="columns is-centered has-text-left">
+          <div class="column is-4 has-text-centered interpolation-panel">
+            <!-- <div class="content has-text-justified">
+              <p>
+                <i>Introduction:</i> In this device, various liquids of different <strong>densities</strong> and viscosities, each represented by distinct
+                <strong>colors</strong>, 
+              </p>
+            </div> -->
+            <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video">
+              <source src="./static/videos/comphy_mp4_sim_06005/tar.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="content has-text-centered">
+              <p>target video</p>
+            </div>
+            <video id="myVideo" autoplay controls muted loop playsinline height="50%" class="showcase-video-half">
+              <source src="./static/videos/comphy_mp4_sim_06005/ref_0.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+              <source src="./static/videos/comphy_mp4_sim_06005/ref_1.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+              <source src="./static/videos/comphy_mp4_sim_06005/ref_2.mp4"
+                      type="video/mp4">
+            </video>
+            <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+              <source src="./static/videos/comphy_mp4_sim_06005/ref_3.mp4"
+                      type="video/mp4">
+            </video>
+            <div class="content has-text-centered">
+              <p>reference videos</p>
+            </div>
+          </div>
+          
+          <!-- Factual Questions. -->
+          
+          <div class="column is-3">
+            <div class="content">
+              
+              <h4 class="title is-4 has-text-centered">Factual <br> Questions</h4>
+              <br>
+              
+              <!-- <div class="scrollable-pane"> -->
+
+                <div class="card">
+                  <h4>event exist</h4>
+                  <p>Q: Are there any cubes that enter the scene after the blue object exits the scene?</p>
+                  <p>A: no</p>
+                  <!-- <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option checked">a) Yes</li>
+                      <li class="option">b) No</li>
+                      <li class="option">c) Cannot Judge</li>
+                  </ul> -->
+                  <!-- <div style="background-color: #f7f7f7; padding: 10px; border-top: 1px solid #eaeaea; margin-top: 10px;">
+                      <strong>Answer:</strong> a) Yes
+                  </div> -->
+                </div>
+
+                <br> <!-- Spacing between the two QA pairs -->
+
+                <div class="card">
+                  <h4>event query</h4>
+                  <p>What shape is the first object to collide with the cyan object?</p>
+                  <p>A: sphere
+                  <!-- <ul style="list-style-type: none; padding-left: 0;">
+                    <li class="option">a) Yes</li>
+                    <li class="option">b) No</li>
+                    <li class="option checked">c) Cannot Judge</li>
+                  </ul> -->
+                </div>
+
+                <br> 
+
+                <div class="card">
+                  <h4>object both query</h4>
+                  <p>What are the colors of the two objects that are oppositely charged?</p>
+                  <p>A: yellow and blue
+                  <!-- <ul style="list-style-type: none; padding-left: 0;">
+                    <li class="option">a) Yes</li>
+                    <li class="option">b) No</li>
+                    <li class="option checked">c) Cannot Judge</li>
+                  </ul> -->
+                </div>
+              <!-- </div> -->
+            </div>
+          </div>
+    
+          <!-- Counterfactual Questions. -->
+          <div class="column is-3">
+            <div class="content">
+              <h4 class="title is-4 has-text-centered">Counterfactual & Predictive<br> Questions</h4>
+              <br>
+                <!-- <h4 class="title is-5 has-text-left">Predictive Questions</h4>
+                <div class="columns is-centered">
+                  <div class="column content"> -->
+
+                <!-- <div class="scrollable-pane"> -->
+
+                  <!-- First QA Pair -->
+                  <!-- <div class="card">
+                    <h4>counterfact heavier</h4> 
+                    <p>What would happen if the yellow sphere were heavier?</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option">a) The blue object and the brown object would collide</li>
+                      <li class="option checked">b) The yellow object would collide with the cube</li>
+                    </ul>
+                  </div> -->
+
+                  <!-- <br> Spacing between the two QA pairs -->
+
+                  <!-- Second QA Pair -->
+                  <div class="card">
+                    <h4>counterfact opposite</h4>
+                    <p>If the blue object were oppositely charged, which event given below would not happen?</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option checked">a) The yellow object and the brown object would collide</li>
+                      <li class="option">b) The blue object and the yellow sphere would collide</li>
+                    </ul>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="card">
+                    <h4>predictive</h4> 
+                    <p>What event given below will happen next?</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option">a) The yellow object and the cube collide</li>
+                      <li class="option checked">b) The cube and the brown object collide</li>
+                    </ul>
+                  </div>
+
+                <!-- </div> -->
+              </div>
+    
+          </div>
+
+          <!-- Predictive Questions. -->
+          <!-- <div class="column is-2">
+            <div class="content">
+              <h4 class="title is-5 has-text-left">Predictive <br> Questions</h4>
+              <br>
+
+                  <div class="card">
+                    <h4>predictive</h4> 
+                    <p>What will happen next?</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option">a) The yellow object and the cube collide</li>
+                      <li class="option checked">b) The cube and the brown object collide</li>
+                    </ul>
+                  </div>
+
+
+              </div>
+    
+          </div>
+        </div>
+
+
+        <!-- <div class="columns is-centered has-text-centered is-vcentered">
+          <div class="column is-four-fifths has-text-left">
+          <div class="container">
+            <br/>
+            <h2 class="title is-3">More Samples</h2>
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-steve">
+                <video poster="static/videos/fluid/fluid_0.jpg" id="steve"  preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/fluid/fluid_0.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-chair-tp">
+                <video poster="static/videos/fluid/fluid_1.jpg" id="chair-tp" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/fluid/fluid_1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-shiba">
+                <video poster="static/videos/fluid/fluid_5.jpg" id="shiba" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/fluid/fluid_5.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-fullbody">
+                <video poster="static/videos/fluid/fluid_12.jpg" id="fullbody" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/fluid/fluid_12.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        </div> -->
+      </div>
+
+
+      <!-- magnet  -->
+      <div id="content7" class="container is-widescreen has-text-centered">
+      
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+  
+          <!-- title -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Real-world Scenario</h2>
+            </div>
+          </div>
+  
+          <div class="columns is-centered has-text-left">
+            <div class="column is-4 has-text-centered interpolation-panel">
+              <!-- <div class="content has-text-justified">
+                <p>
+                  <i>Introduction:</i> In this device, various liquids of different <strong>densities</strong> and viscosities, each represented by distinct
+                  <strong>colors</strong>, 
+                </p>
+              </div> -->
+              <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video">
+                <source src="./static/videos/magnet_mp4_sim_022/tar.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="content has-text-centered">
+                <p>target video</p>
+              </div>
+
+              <br>
+              <video id="myVideo" autoplay controls muted loop playsinline height="50%" class="showcase-video-half">
+                <source src="./static/videos/magnet_mp4_sim_022/0.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+                <source src="./static/videos/magnet_mp4_sim_022/1.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+                <source src="./static/videos/magnet_mp4_sim_022/2.mp4"
+                        type="video/mp4">
+              </video>
+              <!-- <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-half">
+                <source src="./static/videos/comphy_mp4_sim_06005/ref_3.mp4"
+                        type="video/mp4">
+              </video> -->
+              <div class="content has-text-centered">
+                <p>reference videos</p>
+              </div>
+            </div>
+            
+            <!-- Factual Questions. -->
+            
+            <div class="column is-3">
+              <div class="content">
+                
+                <h4 class="title is-4 has-text-centered">Factual <br> Questions</h4>
+                <br>
+                
+                <!-- <div class="scrollable-pane"> -->
+  
+                  <div class="card">
+                    <h4>event exist</h4>
+                    <p>Q: Is the stationary brown cube magnetic?</p>
+                    <p>A: yes</p>
+                    <!-- <ul style="list-style-type: none; padding-left: 0;">
+                        <li class="option checked">a) Yes</li>
+                        <li class="option">b) No</li>
+                        <li class="option">c) Cannot Judge</li>
+                    </ul> -->
+                    <!-- <div style="background-color: #f7f7f7; padding: 10px; border-top: 1px solid #eaeaea; margin-top: 10px;">
+                        <strong>Answer:</strong> a) Yes
+                    </div> -->
+                  </div>
+  
+                  <br> <!-- Spacing between the two QA pairs -->
+  
+                  <div class="card">
+                    <h4>object magnetism count</h4>
+                    <p>How many cubes are magnetic?</p>
+                    <p>A: 2
+                    <!-- <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option">a) Yes</li>
+                      <li class="option">b) No</li>
+                      <li class="option checked">c) Cannot Judge</li>
+                    </ul> -->
+                  </div>
+
+                  <br> <!-- Spacing between the two QA pairs -->
+
+                  <div class="card">
+                    <h4>object object mass compare</h4>
+                    <p>Is the brown cube lighter than the grey sphere?</p>
+                    <p>A: yes
+                    <!-- <ul style="list-style-type: none; padding-left: 0;">
+                      <li class="option">a) Yes</li>
+                      <li class="option">b) No</li>
+                      <li class="option checked">c) Cannot Judge</li>
+                    </ul> -->
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+      
+            <!-- Counterfactual Questions. -->
+            <div class="column is-3">
+              <div class="content">
+                <h4 class="title is-4 has-text-centered">Counterfactual & Predictive <br> Questions</h4>
+                <br>
+                  <!-- <h4 class="title is-5 has-text-left">Predictive Questions</h4>
+                  <div class="columns is-centered">
+                    <div class="column content"> -->
+  
+                  <!-- <div class="scrollable-pane"> -->
+  
+                    <!-- First QA Pair -->
+                    <!-- <div class="card">
+                      <h4>counterfact heavier</h4> 
+                      <p>What would happen if the yellow sphere were heavier?</p>
+                      <ul style="list-style-type: none; padding-left: 0;">
+                        <li class="option">a) The blue object and the brown object would collide</li>
+                        <li class="option checked">b) The yellow object would collide with the cube</li>
+                      </ul>
+                    </div> -->
+  
+                    <!-- <br> Spacing between the two QA pairs -->
+  
+                    <!-- Second QA Pair -->
+                    <div class="card">
+                      <h4>counterfact heavier</h4>
+                      <p>If the red cube were heavier, which event would happen?</p>
+                      <ul style="list-style-type: none; padding-left: 0;">
+                        <li class="option">a) The red cube and the grey sphere would collide</li>
+                        <li class="option checked">b) The red cube and the brown cube would collide</li>
+                      </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="card">
+                      <h4>predictive</h4> 
+                      <p>What event will not happen next?</p>
+                      <ul style="list-style-type: none; padding-left: 0;">
+                        <li class="option">a) The red cube and the grey sphere would collide</li>
+                        <li class="option checked">b) The brown cube and the sphere would collide</li>
+                      </ul>
+                    </div>
+  
+                  <!-- </div> -->
+                </div>
+      
+            </div>
+  
+            <!-- Predictive Questions. -->
+            <!-- <div class="column is-2">
+              <div class="content">
+                <h4 class="title is-5 has-text-left">Predictive <br> Questions</h4>
+                <br>
+  
+                    <div class="card">
+                      <h4>predictive</h4> 
+                      <p>What event will not happen next?</p>
+                      <ul style="list-style-type: none; padding-left: 0;">
+                        <li class="option">a) The red cube and the grey sphere would collide</li>
+                        <li class="option checked">b) The brown cube and the sphere would collide</li>
+                      </ul>
+                    </div>
+  
+                    <br> 
+  
+                </div>
+      
+            </div> -->
+          </div>
+  
+
+
+
+
+
+
+
+          <!-- <div class="columns is-centered has-text-centered is-vcentered">
+            <div class="column is-four-fifths has-text-left">
+            <div class="container">
+              <br/>
+              <h2 class="title is-3">More Samples</h2>
+              <div id="results-carousel" class="carousel results-carousel">
+                <div class="item item-steve">
+                  <video poster="static/videos/fluid/fluid_0.jpg" id="steve"  preload="none" controls muted loop playsinline height="100%">
+                    <source src="./static/videos/fluid/fluid_0.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+                <div class="item item-chair-tp">
+                  <video poster="static/videos/fluid/fluid_1.jpg" id="chair-tp" preload="none" controls muted loop playsinline height="100%">
+                    <source src="./static/videos/fluid/fluid_1.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+                <div class="item item-shiba">
+                  <video poster="static/videos/fluid/fluid_5.jpg" id="shiba" preload="none" controls muted loop playsinline height="100%">
+                    <source src="./static/videos/fluid/fluid_5.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+                <div class="item item-fullbody">
+                  <video poster="static/videos/fluid/fluid_12.jpg" id="fullbody" preload="none" controls muted loop playsinline height="100%">
+                    <source src="./static/videos/fluid/fluid_12.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+  
+            </div>
+          </div> -->
+      </div>
+
+      <!--/ Matting. -->
+      <!-- <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-left">
+          <div class="container">
+            <br/>
+            <h2 class="title is-3">More Samples</h2>
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-chair-tp">
+                <video poster="./static/videos/rope/11.jpg" id="chair-tp" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/rope/rope_11.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-fullbody">
+                <video poster="./static/videos/rope/27.jpg" id="fullbody" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/rope/rope_27.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-blueshirt">
+                <video poster="./static/videos/rope/12.jpg" id="blueshirt" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/rope/rope_12.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-mask">
+                <video poster="./static/videos/rope/17.jpg" id="mask" preload="none" controls muted loop playsinline height="100%">
+                  <source src="./static/videos/rope/rope_17.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div> -->
+    <!-- </div> -->
+  </div>
+
+  
+</section>
+
+
+<!-- PCR. -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div id="content3">
+          <br/>
+          <br/>
+          <br/>
+          <h2 class="title is-2">
+          
+            <a style="color: rgb(106, 220, 255);">P</a>hysical
+            <a style="color: rgb(106, 220, 255);">C</a>oncept
+            <a style="color: rgb(106, 220, 255);">R</a>easoner
+            <!-- <span style="color: rgb(106, 220, 255);">PCR</span> -->
+          
+          </h2>
+          <br/>
+          <div class="columns is-vcentered">
+            <div class="column is-12 has-text-centered">
+              <img src="static/images/model_arch_cropped_00.png" alt="distribution" class="showcase-qa">
+            </div>
+          </div>
+          <div class="columns is-vcentered">
+            <div class="column has-text-centered">
+              <h2 class="content has-text-justified">
+                <!-- <p>We introduce <strong>Cont</strong>inuum <strong>P</strong>hysical <strong>R</strong>easoning <strong>O</strong>racle Model, <strong>ContPRO</strong>, which marries physics-based
+                dynamics models with the recent large language models which enjoy the advantages of both models, precise dynamic predictions, and interpretable reasoning. With questions, predefined APIs, and specific prompts, an LLM will play as a
+                  program parser that translates questions into code snippets. The visual perception module predicts objects’ location and static attributes.
+                  The physical simulation module predicts dynamics. The symbolic execution module executes the code snippet to output the answer.</p> -->
+
+                <p>
+                  We present <strong>P</strong>hysical <strong>C</strong>oncept <strong>R</strong>easoner
+                  (PCR), a new physical reasoning model, which aims to comprehend objects' visible properties, infer hidden physical
+                  properties and events, and image corresponding physical
+                  dynamics by observing the videos and responding to the
+                  associated questions. 
+                </p>
+                <p>
+                  PCR can be factorized into different functional modules
+                  for physical reasoning in videos. As shown in the figure above, the
+                  model consists of five major modules: 
+                  (1) <a style="color: rgb(0, 0, 0);">Video Perceiver</a>, 
+                  (2) <a style="color: rgb(0, 0, 0);">Visible Property Grounder</a>, 
+                  (3) <a style="color: rgb(0, 0, 0);">Physical Property Inferencer</a>,
+                  (4) <a style="color: rgb(0, 0, 0);">Property-based Dynamic Predictor</a>, and 
+                  (5) <a style="color: rgb(0, 0, 0);">Differentiable Symbolic Executor</a>. 
+                  The perception module detects objects' location and visual appearance attributes. The physical property learner
+                  learns objects' properties based on detected object trajectories. The dynamic predictor predicts objects' dynamics in the
+                  counterfactual scene based on objects' properties and locations. Finally, an execution engine runs the program parsed by
+                  the language parser on the predicted dynamic scene to answer the question.
+                </p>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Examples. -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-10">
+        <div id="content4">
+          <br>
+          <h2 class="title is-2">Example</h2>
+          <br>
+          <!-- <div class="columns is-centered is-vcentered">
+            <div class="column is-12 has-text-centered">
+              <img src="static/images/example.png" alt="execution example" class="showcase-qa">
+            </div>
+          </div> -->
+
+          <video id="myVideo" autoplay controls muted loop playsinline height="100%" class="showcase-video-full">
+            <source src="./static/videos/dynamic_exe_final_ver.mp4"
+                    type="video/mp4">
+          </video>
+          <!-- <h2 class="content has-text-justified"> -->
+            <!-- Comparison between baselines and human on ContPhy evaluation. We list some typical values among the results from various question families, <strong>Prop</strong>erty, <strong>Counter</strong>factual,
+            <strong>Goal</strong>-driven and <strong>Pred</strong>ictive questions. Accuracies are reported with per <strong>opt</strong>ion and per <strong>ques</strong>tion. -->
+            <!-- TODO -->
+          </h2>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Experiments. -->
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-9">
+        <div id="content5">
+          <br/>
+          <br/>
+          <br/>
+          <h2 class="title is-2">Experiments</h2>
+
+          <br>
+          <br>
+
+          <div class="columns  is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">ComPhy</h2>
+            </div>
+          </div>
+
+          <div class="columns is-vcentered">
+            <div class="column is-12 has-text-centered">
+              <img src="static/images/comphy_acc-cropped_00.png" alt="distribution" class="showcase-qa">
+            </div>
+          </div>
+
+          <!-- <h2 class="content has-text-centered">
+            Question distribution statistics of fluid, rope, cloth and ball.
+          </h2> -->
+          <br>
+          <br>
+
+
+          <div class="columns  is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Real-world Scenario</h2>
+            </div>
+          </div>
+
+          <div class="columns is-vcentered">
+            <div class="column is-12 has-text-centered">
+              <img src="static/images/magnet_acc-cropped_00.png" alt="distribution" class="showcase-qa">
+            </div>
+          </div>
+          <!-- <h4 class="title is-6"><span style="color: rgb(111, 109, 109);font-style: italic;">Video loading may take a few seconds for the first time. Thanks for your patience!</span></h4>  -->
+
+          <h2 class="content has-text-left">
+            <span style="color: rgb(111, 109, 109);font-style: italic;">
+              * For Bias analysis model column, we choose highest values among them.
+              <br>
+              * For Baseline, we choose highest values among VQA & Compositional Reasoning models.
+              <br>
+              * For LVLM, we choose highest values among GPT4-V, Gemini and ALPRO.
+              <br>
+              * Highest and second highest values are marked in <span style="color: rgb(177, 37, 25);"> Red </span> and <span style="color: rgb(47, 110, 186);"> Blue </span> .
+              <br>
+              * Please check full table in our paper.
+            </span>
+          </h2>
+
+
+
+        </div>
+      </div>
+      <!-- <div class="column is-four-fifths">
+        <div id="content8">
+          <br/>
+          <br/>
+          <h2 class="title is-3">Question Distribution</h2>
+          <div class="columns is-vcentered">
+            <div class="column is-12 has-text-centered">
+              <img src="static/images/distr1.png" alt="distribution" class="showcase-qa">
+            </div>
+          </div>
+          <h2 class="content has-text-centered">
+            Question distribution statistics of fluid, rope, cloth and ball.
+          </h2>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/---.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/---" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <!-- <p>
+            This paper is <a
+            href=""></a>.
+          </p> -->
+          <p>
+            Licensed under <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. Template borrowed from <a
+            href="https://github.com/nerfies/nerfies.github.io">here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("a[href^='#']").on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if (target.length) {
+          event.preventDefault();
+          $('html, body').stop().animate({
+            scrollTop: target.offset().top
+          }, 400);
+        }
+      });
+    });
+    </script>
+  <a href="#" id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+</body>
+</html>

@@ -8,6 +8,27 @@ body {
     color: #000;
 }
 
+.icon-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  /* Add more styling here as needed */
+}
+.icon-link {
+  text-decoration: none;
+  color: black; /* Set the color to match your design */
+  text-align: center;
+}
+.icon {
+  font-size: 25px; /* Adjust icon size */
+  /* Add more styling here as needed */
+}
+.icon-text {
+  display: block;
+  /* Add more styling here as needed */
+}
+
+
 .link-block a {
     margin-top: 5px;
     margin-bottom: 5px;

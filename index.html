@@ -45,7 +45,82 @@
             <h1 class="title is-1 publication-title">Compositional Physical Reasoning of Objects and Events from Videos</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                Anonymous authors
+                <table align="center" border="0" width="300" class="authors">
+                  <tbody><tr>
+                  <!-- <td class="author"> <a href="https://dingmyu.github.io/">Mingyu Ding</a><sup>1</sup></td> -->
+                  
+                  </tr></tbody>
+                </table>
+
+                <table align="center" border="0" width="800" class="affiliations">
+                  <tbody>
+                    <tr><td class="affliation" align="center">
+                      <td class="author"> <a href="https://zfchenunique.github.io/">Zhenfang Chen</a><sup>1,*</sup></td>
+                      <td class="author"> <a href="https://www.linkedin.com/in/shilong-dong/">Shilong Dong</a><sup>2,*</sup></td>
+                      <td class="author"> <a href="https://scholar.google.fr/citations?view_op=list_works&hl=fr&hl=fr&user=ylUBBDwAAAAJ">Kexin Yi</a><sup>3</sup></td>
+                      <td class="author"> <a href="https://dingmyu.github.io/">Mingyu Ding</a><sup>4</sup></td>
+                    </td>
+                    </tr>
+                  </tbody></table>
+
+                  <table align="center" border="0" width="700" class="affiliations">
+                    <tbody>
+                      <tr><td class="affliation" align="center">
+                      <td class="author"> <a href="https://yunzhuli.github.io/">Yunzhu Li</a><sup>5</sup></td>
+                        <td class="author"> <a href="https://web.mit.edu/torralba/www/">Antonio Torralba</a><sup>6</sup></td>
+                        <td class="author"> <a href="http://web.mit.edu/cocosci/josh.html">Joshua B. Tenenbaum</a><sup>6</sup></td>
+                        <td class="author"> <a href="http://people.csail.mit.edu/ganchuang/">Chuang Gan</a><sup>1, 7</sup></td>
+                      </td>
+                      </tr>
+                    </tbody></table>
+                  
+                  <br>
+
+                <table align="center" border="0" width="1000" class="affiliations">
+                <tbody>
+                  <tr><td class="affliation" align="center">
+                    <!-- <sup>1</sup><a href="https://www.hku.hk/">The University of Hong Kong</a> -->
+                    <sup>1</sup><b>MIT-IBM Watson AI Lab</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>2</sup><b>New York University</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>3</sup><b>Harvard University</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>4</sup><b>University of California, Berkeley</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>5</sup><b>University of Illinois Urbana-Champaign</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>6</sup><b>Massachusetts Institute of Technology</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>7</sup><b>UMass Amherst</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- <sup>3</sup><a href="http://csail.mit.edu/">MIT</a> -->
+                  </td>
+                  </tr>
+                </tbody></table>
+                <br>
+                * (Equal Contributions)
+                <br>
+                <br>
+
+
+                <div class="icon-container">
+                  <!-- Paper Icon and Link -->
+                  
+                  <a href="http://link-to-dataset.com" class="icon-link" target="_blank" rel="noopener noreferrer">
+                    <img src="TODO.png" alt="Paper" >
+                    <!-- <i class="fas fa-database icon"></i> -->
+                    <span class="icon-text">Paper</span>
+                  </a>
+                  
+
+                  <!-- Code Icon and Link -->
+                  <a href="http://link-to-dataset.com" class="icon-link" target="_blank" rel="noopener noreferrer">
+                    <img src="static/images/git_icon.png" alt="Code" >
+                    <!-- <i class="fas fa-database icon"></i> -->
+                    <span class="icon-text">Code</span>
+                  </a>
+                
+                  <!-- Data Icon and Link -->
+                  <a href="http://link-to-dataset.com" class="icon-link" target="_blank" rel="noopener noreferrer">
+                    <img src="static/images/data_icon.svg" alt="Data">
+                    <!-- <i class="fas fa-database icon"></i> -->
+                    <span class="icon-text">Data</span>
+                  </a>
+                </div>
               </span>
             </div>
 
@@ -71,44 +146,42 @@
 
 
 <!-- Abstract. -->
-<section class="section">
+<section id="content1" class="section">
   <div class="container is-max-desktop">
     <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths"> -->
-        <div id="content1">
-          <br/>
-          <h2 class="title is-3 has-text-centered">Abstract</h2>
-
-          <div class="content has-text-justified">
-            <!-- <p class="content has-text-centered"> <span style="font-size: 24px;color: black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-              We introduce the <strong>Cont</strong>inuum <strong>Phy</strong>sical Dataset <strong>(ContPhy)</strong>, a novel benchmark for
-              evaluating machine models in physical reasoning across diverse scenarios for
-                the continuum.
-              </span>
-            </p> -->
-            <p><span style="font-size: 20px;color: rgb(58, 58, 58);font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-              Understanding and reasoning about objects' physical properties in the natural world is a fundamental challenge in artificial
-              intelligence. While some properties like colors and shapes can be directly observed, others, such as mass and electric charge, are
-              hidden from the objects' visual appearance. This paper addresses the unique challenge of inferring these hidden physical properties
-              from objects' motion and interactions and predicting corresponding dynamics based on the inferred physical properties. We first introduce
-              the Compositional Physical Reasoning (ComPhy) dataset. For a given set of objects, ComPhy includes limited videos of them moving
-              and interacting under different initial conditions. The model is evaluated based on its capability to unravel the compositional hidden
-              properties, such as mass and charge, and use this knowledge to answer a set of questions. Besides the synthetic videos from simulators,
-              we also collect a real-world dataset to show further test physical reasoning abilities of different models. We evaluate state-of-the-art video
-              reasoning models on ComPhy and reveal their limited ability to capture these hidden properties, which leads to inferior performance.
-              We also propose a novel neuro-symbolic framework, Physical Concept Reasoner (PCR), that learns and reasons about both visible
-              and hidden physical properties. Leveraging an object-centric representation, PCR utilizes videos and the associated natural language
-              to infer objects' physical properties without dense object annotations. It incorporates property-aware graph networks to approximate the
-              dynamic interactions among objects. Furthermore, PCR employs a semantic parser to convert questions into semantic programs, and
-              a program executor to execute the programs based on the learned physical properties and dynamics. After training, PCR demonstrates
-              remarkable capabilities. It can detect and associate objects across frames, ground visible and hidden physical properties, make future
-              and counterfactual predictions, and utilize these extracted representations to answer questions. We hope the proposed ComPhy dataset
-              and the PCR model present a promising step towards more comprehensive physical reasoning in AI systems.
-            </span>
-            </p>
-          </div>
-        </div>
         <br/>
+        <h2 class="title is-2 has-text-centered">Abstract</h2>
+
+        <div class="content has-text-justified">
+          <!-- <p class="content has-text-centered"> <span style="font-size: 24px;color: black;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            We introduce the <strong>Cont</strong>inuum <strong>Phy</strong>sical Dataset <strong>(ContPhy)</strong>, a novel benchmark for
+            evaluating machine models in physical reasoning across diverse scenarios for
+              the continuum.
+            </span>
+          </p> -->
+          <p><span style="font-size: 20px;color: rgb(58, 58, 58);font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Understanding and reasoning about objects' physical properties in the natural world is a fundamental challenge in artificial
+            intelligence. While some properties like colors and shapes can be directly observed, others, such as mass and electric charge, are
+            hidden from the objects' visual appearance. This paper addresses the unique challenge of inferring these hidden physical properties
+            from objects' motion and interactions and predicting corresponding dynamics based on the inferred physical properties. We first introduce
+            the Compositional Physical Reasoning (ComPhy) dataset. For a given set of objects, ComPhy includes limited videos of them moving
+            and interacting under different initial conditions. The model is evaluated based on its capability to unravel the compositional hidden
+            properties, such as mass and charge, and use this knowledge to answer a set of questions. Besides the synthetic videos from simulators,
+            we also collect a real-world dataset to show further test physical reasoning abilities of different models. We evaluate state-of-the-art video
+            reasoning models on ComPhy and reveal their limited ability to capture these hidden properties, which leads to inferior performance.
+            We also propose a novel neuro-symbolic framework, Physical Concept Reasoner (PCR), that learns and reasons about both visible
+            and hidden physical properties. Leveraging an object-centric representation, PCR utilizes videos and the associated natural language
+            to infer objects' physical properties without dense object annotations. It incorporates property-aware graph networks to approximate the
+            dynamic interactions among objects. Furthermore, PCR employs a semantic parser to convert questions into semantic programs, and
+            a program executor to execute the programs based on the learned physical properties and dynamics. After training, PCR demonstrates
+            remarkable capabilities. It can detect and associate objects across frames, ground visible and hidden physical properties, make future
+            and counterfactual predictions, and utilize these extracted representations to answer questions. We hope the proposed ComPhy dataset
+            and the PCR model present a promising step towards more comprehensive physical reasoning in AI systems.
+          </span>
+          </p>
+        </div>
+      <br/>
 
         <!-- <div class="columns is-centered has-text-centered">
           <div class="column is-10">
@@ -695,11 +768,11 @@
 
 
 <!-- Examples. -->
-<section class="section">
+<section id="content4" class="section">
   <div class="container is-max-widescreen">
     <div class="columns is-centered has-text-centered">
       <div class="column is-10">
-        <div id="content4">
+        <div>
           <br>
           <h2 class="title is-2">Example</h2>
           <br>

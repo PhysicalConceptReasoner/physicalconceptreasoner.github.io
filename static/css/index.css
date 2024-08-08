@@ -402,7 +402,7 @@ body {
   border-radius: 20px;
 }
 
-/* #content7 .card {
+/* #content7 .card {  
   border: 2px solid #ffd000;
 }
 #content7 .interpolation-panel {
@@ -434,4 +434,65 @@ pre {
   max-height: 400px;
   overflow: auto; 
   border-radius: 20px;
+}
+
+
+.folder {
+  background-color: #fff;
+  border: 2px solid hsl(0, 68%, 14%);
+  padding: 15px 15px;
+  margin: 5px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1 1 calc(33.3% - 100px); /* Adjust the percentage to change the number of items per row */
+  box-sizing: border-box;
+  max-width: 500px; /* 设置最大宽度 */
+  height: 60px; /* 设置固定高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* Ensure no text decoration */
+  color: inherit; /* Inherit the text color */
+  border-color: #339efb;
+}
+
+.folder_real {
+  background-color: #fff;
+  border: 2px solid hsl(0, 68%, 14%);
+  padding: 15px 15px;
+  margin: 5px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex: 1 1 calc(33.3% - 100px); /* Adjust the percentage to change the number of items per row */
+  box-sizing: border-box;
+  max-width: 500px; /* 设置最大宽度 */
+  height: 60px; /* 设置固定高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* Ensure no text decoration */
+  color: inherit; /* Inherit the text color */
+  border-color: #4addc0;
+}
+
+
+.columns-container {
+  max-width: 1000px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.folder-link {
+  text-decoration: none; /* Ensure no text decoration */
+  display: block; /* Make the link block-level to cover the whole folder */
+  flex: 1 1 calc(33.3% - 100px); /* Adjust the percentage to change the number of items per row */
+  box-sizing: border-box;
+  margin: 10px; /* Add margin around each item */
+  color: #000000;
+}
+
+.folder-link:hover .folder {
+  background-color: #f0f0f0; /* Optional: change background on hover */
 }
